@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-toolbar>CADASTRAR SABRE</mat-toolbar>
+  
+  <mat-card-content>
+    <form [formGroup]="form">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label for="tipoSelect">Tipo</mat-label>
+        <mat-select formControlName="tipo"  id="tipoSelect"> 
+          <mat-option value="MANUAL">MANUAL</mat-option>
+          <mat-option value="AUTOMATICO">AUTOMATICO</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput placeholder="Fabricação (dd-MM-yyyy)" formControlName="dataFabricacao">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline"  class="full-width">
+        <input matInput placeholder="Nome do Jedi" formControlName="jedi">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label for="statusSelect">Selecione o Status</mat-label>
+        <mat-select formControlName="status" id="statusSelect">
+          <mat-option value="DISPONIVEL">DISPONIVEL</mat-option>
+          <mat-option value="UTILIZADO">UTILIZADO</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button class="btnSalvar" (click)="onSubmit()" > SALVAR </button>
+    <button mat-raised-button class="btnCancelar" (click)="onCancel()" > CANCELAR </button>
+  </mat-card-actions>
+  
+</mat-card>

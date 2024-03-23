@@ -3,15 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { SabresRoutingModule } from './sabres-routing.module';
 import { SabresComponent } from './sabres/sabres.component';
+import { SabreFormComponent } from './sabre-form/sabre-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppMaterialModule } from '../shared/app-material/app-material.module';
 
 
 @NgModule({
   declarations: [
-    SabresComponent
+    SabresComponent,
+    SabreFormComponent
   ],
   imports: [
     CommonModule,
-    SabresRoutingModule
+    SabresRoutingModule,
+    AppMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class SabresModule { }

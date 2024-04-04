@@ -10,6 +10,7 @@ public class SabreMapper {
 
     public Sabre convertToEntity(SabreDTO sabreDTO){
         Sabre sabre = new Sabre();
+        sabre.setId(sabre.getId());
         sabre.setTipo(sabreDTO.getTipo());
         sabre.setDataFabricacao(DataUtils.convertStringToLocalDate(sabreDTO.getDataFabricacao()));
         sabre.setStatus(sabreDTO.getStatus());
@@ -20,6 +21,7 @@ public class SabreMapper {
 
     public SabreDTO convertToDTO(Sabre sabre){
         SabreDTO sabreDTO = new SabreDTO();
+        sabreDTO.setId(sabre.getId());
         sabreDTO.setTipo(sabre.getTipo());
         sabreDTO.setDataFabricacao(DataUtils.convertLocalDateToString(sabre.getDataFabricacao()));
         sabreDTO.setStatus(sabre.getStatus());

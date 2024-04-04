@@ -5,8 +5,9 @@ import com.starwars.sabresjava.mapper.SabreMapper;
 import com.starwars.sabresjava.model.Sabre;
 import com.starwars.sabresjava.model.SabreDTO;
 import com.starwars.sabresjava.repository.SabreRepository;
-import com.starwars.sabresjava.util.DataUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SabreService {
@@ -22,6 +23,14 @@ public class SabreService {
     public SabreDTO salvar(SabreDTO sabreDTO) {
         Sabre sabre = sabreRepository.save(sabreMapper.convertToEntity(sabreDTO));
         return sabreMapper.convertToDTO(sabre);
+    }
+
+    public List<SabreDTO> listarTodos(){
+        List<Sabre> sabreList = sabreRepository.findAll();
+
+        return sabreList.stream()
+                .map(sabreMapper::convertToDTO)
+                .toList();
     }
 
 

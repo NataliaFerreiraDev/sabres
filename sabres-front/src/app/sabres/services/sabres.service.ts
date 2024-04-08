@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Sabre } from '../model/sabre';
 import { Observable } from 'rxjs';
+import { delay, first, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,12 @@ export class SabresService {
   }
 
   list(): Observable<Sabre[]>{
-    return this.httpClient.get<Sabre[]>(this.API);
+    return this.httpClient.get<Sabre[]>(this.API)
+    .pipe(
+      first(),
+      delay(3000),
+      tap(sabres => console.log(sabres))
+    );
   }
 
 }

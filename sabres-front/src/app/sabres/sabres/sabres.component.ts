@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 })
 export class SabresComponent implements OnInit {
 
-  sabres: Observable<Sabre[]>;
+  sabres$: Observable<Sabre[]>;
   displayedColumns = ['id', 'tipo', 'dataFabricacao', 'status', 'jedi'];
 
   constructor(private sabreService: SabresService) { 
-    this.sabres = this.sabreService.list();
+    this.sabres$ = this.sabreService.list();
   }
 
   ngOnInit(): void {

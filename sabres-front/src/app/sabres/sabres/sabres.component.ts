@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SabresService } from '../services/sabres.service';
 import { Sabre } from '../model/sabre';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-sabres',
@@ -13,8 +16,21 @@ export class SabresComponent implements OnInit {
   sabres$: Observable<Sabre[]>;
   displayedColumns = ['id', 'tipo', 'dataFabricacao', 'status', 'jedi'];
 
-  constructor(private sabreService: SabresService) { 
-    this.sabres$ = this.sabreService.list();
+  constructor(
+    private sabreService: SabresService,
+    public dialog: MatDialog
+  ) {
+    this.sabres$ = this.sabreService.list()
+      .pipe(catchError(error => {
+        this.onError('Erro ao carregar a lista de Sabres.');
+        return of([])
+      }));
+  }
+
+  onError(errorMsg: String) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    });
   }
 
   ngOnInit(): void {

@@ -6,6 +6,7 @@ import { SabresComponent } from './sabres/sabres.component';
 import { SabreFormComponent } from './sabre-form/sabre-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
     CommonModule,
     SabresRoutingModule,
     AppMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class SabresModule { }

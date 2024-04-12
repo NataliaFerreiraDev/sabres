@@ -1,0 +1,9 @@
+.mat-dialog-title{
+    color: red;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.mat-dialog-actions{
+    justify-content: end;
+}

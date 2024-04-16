@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sabres',
@@ -14,11 +15,13 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 export class SabresComponent implements OnInit {
 
   sabres$: Observable<Sabre[]>;
-  displayedColumns = ['id', 'tipo', 'dataFabricacao', 'status', 'jedi'];
+  displayedColumns = ['id', 'tipo', 'dataFabricacao', 'status', 'jedi', 'actions'];
 
   constructor(
     private sabreService: SabresService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.sabres$ = this.sabreService.list()
       .pipe(catchError(error => {
@@ -34,6 +37,11 @@ export class SabresComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onAdd(){
+    console.log("Novo Sabre");
+    this.router.navigate(['novo'], {relativeTo: this.route});
   }
 
 }

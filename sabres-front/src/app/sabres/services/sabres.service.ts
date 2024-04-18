@@ -21,7 +21,7 @@ export class SabresService {
     return this.httpClient.get<Sabre[]>(this.API)
     .pipe(
       first(),
-      delay(1500),
+      delay(1000),
       tap(sabres => console.log(sabres))
     );
   }

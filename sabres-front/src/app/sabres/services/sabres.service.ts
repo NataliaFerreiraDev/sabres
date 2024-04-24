@@ -13,7 +13,7 @@ export class SabresService {
 
   constructor(private httpClient: HttpClient) { }
 
-  save(record: Sabre){
+  save(record: Partial<Sabre>){
     return this.httpClient.post<Sabre>(this.API, record);
   }
 

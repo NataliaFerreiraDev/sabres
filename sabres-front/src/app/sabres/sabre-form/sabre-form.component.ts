@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -12,19 +12,17 @@ import { SabresService } from '../services/sabres.service';
 })
 export class SabreFormComponent implements OnInit {
 
-  form: UntypedFormGroup;
+  form = this.formBuilder.group({
+    tipo: [''],
+    dataFabricacao: [''],
+    jedi: [''],
+    status: ['']
+  });
 
-  constructor(private formBuilder: UntypedFormBuilder,
+  constructor(private formBuilder: NonNullableFormBuilder,
     private service: SabresService,
     private snackBar: MatSnackBar,
-    private location: Location) {
-    this.form = this.formBuilder.group({
-      tipo: [null],
-      dataFabricacao: [null],
-      jedi: [null],
-      status: [null]
-    });
-  }
+    private location: Location) {}
 
   ngOnInit(): void {
   }

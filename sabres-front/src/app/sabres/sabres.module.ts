@@ -7,12 +7,14 @@ import { SabreFormComponent } from './sabre-form/sabre-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
+import { SabresListComponent } from './sabres-list/sabres-list.component';
 
 
 @NgModule({
   declarations: [
     SabresComponent,
-    SabreFormComponent
+    SabreFormComponent,
+    SabresListComponent
   ],
   imports: [
     CommonModule,

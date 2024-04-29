@@ -15,8 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SabresComponent implements OnInit {
 
   sabres$: Observable<Sabre[]>;
-  displayedColumns = ['id', 'tipo', 'dataFabricacao', 'status', 'jedi', 'actions'];
-
+  
   constructor(
     private sabreService: SabresService,
     public dialog: MatDialog,
@@ -40,7 +39,6 @@ export class SabresComponent implements OnInit {
   }
 
   onAdd(){
-    console.log("Novo Sabre");
     this.router.navigate(['novo'], {relativeTo: this.route});
   }
 

@@ -1,4 +1,6 @@
 .mat-card{
+    max-width: 90%;
+    margin: 2em auto;
     text-align-last: center;
 }
 
@@ -6,8 +8,10 @@
     justify-content: center;
 }
 
-table {
-    width: 100%;
+.column-flex{
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
 }
 
 .loading-spinner{

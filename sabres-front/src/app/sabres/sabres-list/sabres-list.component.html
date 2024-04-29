@@ -1,0 +1,45 @@
+<mat-table [dataSource]="sabres">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+        <mat-header-cell  *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let sabres"> {{ sabres.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Tipo Column -->
+    <ng-container matColumnDef="tipo">
+        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+        <mat-cell *matCellDef="let sabres"> {{ sabres.tipo }} </mat-cell>
+    </ng-container>
+
+    <!-- Data Fabricacao Column -->
+    <ng-container matColumnDef="dataFabricacao">
+        <mat-header-cell *matHeaderCellDef> Data Fabricacao </mat-header-cell>
+        <mat-cell *matCellDef="let sabres"> {{sabres.dataFabricacao}} </mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let sabres"> {{sabres.status}} </mat-cell>
+    </ng-container>
+
+    <!-- Jedi Column -->
+    <ng-container matColumnDef="jedi">
+        <mat-header-cell *matHeaderCellDef> Jedi </mat-header-cell>
+        <mat-cell *matCellDef="let sabres"> {{sabres.jedi}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="action-column"> Editar </mat-header-cell>
+        <mat-cell *matCellDef="let sabres" class="action-column"> <button mat-icon-button color="primary"
+                aria-label="Editar o Sabre">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

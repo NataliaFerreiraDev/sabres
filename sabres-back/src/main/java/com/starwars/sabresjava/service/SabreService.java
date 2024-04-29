@@ -33,5 +33,10 @@ public class SabreService {
                 .toList();
     }
 
+    public SabreDTO buscarPorId(Long id){
+        Sabre sabre = sabreRepository.findById(id).orElse(null);
+
+        return sabre != null ? sabreMapper.convertToDTO(sabre) : null;
+    }
 
 }

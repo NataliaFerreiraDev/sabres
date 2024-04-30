@@ -1,9 +1,11 @@
+
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { NonNullableFormBuilder } from '@angular/forms';
 import { SabresService } from '../services/sabres.service';
+import { Sabre } from '../model/sabre';
 
 @Component({
   selector: 'app-sabre-form',
@@ -13,6 +15,7 @@ import { SabresService } from '../services/sabres.service';
 export class SabreFormComponent implements OnInit {
 
   form = this.formBuilder.group({
+    id: [''],
     tipo: [''],
     dataFabricacao: [''],
     jedi: [''],
@@ -22,9 +25,21 @@ export class SabreFormComponent implements OnInit {
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: SabresService,
     private snackBar: MatSnackBar,
-    private location: Location) {}
+    private location: Location,
+    private route: ActivatedRoute  
+  ) {}
 
   ngOnInit(): void {
+    const sabre: Sabre = this.route.snapshot.data['sabre'];
+    this.form.setValue({
+      id: sabre.id,
+      tipo: sabre.tipo,
+      dataFabricacao: sabre.dataFabricacao,
+      jedi: sabre.jedi,
+      status: sabre.status
+    }
+
+    )
   }
 
   onSubmit() {

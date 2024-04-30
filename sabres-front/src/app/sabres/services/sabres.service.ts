@@ -26,4 +26,8 @@ export class SabresService {
     );
   }
 
+  buscaPorId(id: string){
+    return this.httpClient.get<Sabre>(`${this.API}/${id}`)
+  }
+
 }

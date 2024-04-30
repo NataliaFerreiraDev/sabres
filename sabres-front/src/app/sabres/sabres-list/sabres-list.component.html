@@ -35,7 +35,7 @@
         <mat-header-cell *matHeaderCellDef class="action-column"> Editar </mat-header-cell>
         <mat-cell *matCellDef="let sabres" class="action-column"> <button mat-icon-button color="primary"
                 aria-label="Editar o Sabre">
-                <mat-icon>edit</mat-icon>
+                <mat-icon (click)="onEdit(sabres)">edit</mat-icon>
             </button>
         </mat-cell>
     </ng-container>

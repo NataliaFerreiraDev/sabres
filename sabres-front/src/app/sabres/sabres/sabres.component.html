@@ -8,7 +8,8 @@
         <app-sabres-list 
             *ngIf="sabres$ | async as sabres; else loading" 
             [sabres]="sabres" 
-            (add)="onAdd()"
+            (add)="onAdd()" 
+            (edit)="onEdit($event)"
         ></app-sabres-list>
 
         <ng-template #loading>

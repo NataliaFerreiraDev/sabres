@@ -42,4 +42,8 @@ export class SabresComponent implements OnInit {
     this.router.navigate(['novo'], {relativeTo: this.route});
   }
 
+  onEdit(sabre: Sabre){
+    this.router.navigate(['editar', sabre.id], {relativeTo: this.route});
+  }
+
 }

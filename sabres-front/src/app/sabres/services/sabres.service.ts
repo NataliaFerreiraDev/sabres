@@ -13,10 +13,6 @@ export class SabresService {
 
   constructor(private httpClient: HttpClient) { }
 
-  save(record: Partial<Sabre>){
-    return this.httpClient.post<Sabre>(this.API, record);
-  }
-
   list(): Observable<Sabre[]>{
     return this.httpClient.get<Sabre[]>(this.API)
     .pipe(
@@ -28,6 +24,21 @@ export class SabresService {
 
   buscaPorId(id: string){
     return this.httpClient.get<Sabre>(`${this.API}/${id}`)
+  }
+
+  save(record: Partial<Sabre>){
+    if(record.id){
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Sabre>){
+    return this.httpClient.post<Sabre>(this.API, record);
+  }
+
+  private update(record: Partial<Sabre>){
+    return this.httpClient.put<Sabre>(`${this.API}/${record.id}`, record);
   }
 
 }

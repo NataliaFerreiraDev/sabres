@@ -17,17 +17,6 @@ public class SabreController {
         this.sabreService = sabreService;
     }
 
-    @PostMapping
-    public ResponseEntity<SabreDTO> inserir(@RequestBody SabreDTO sabreDTO) {
-        SabreDTO sabreSalvo = sabreService.salvar(sabreDTO);
-
-        if (sabreSalvo != null) {
-            return ResponseEntity.ok(sabreSalvo);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
     @GetMapping
     public ResponseEntity<List<SabreDTO>> listarTodos() {
         List<SabreDTO> sabreDTOList = sabreService.listarTodos();
@@ -45,6 +34,28 @@ public class SabreController {
 
         if (sabreDTO != null) {
             return ResponseEntity.ok(sabreDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<SabreDTO> inserir(@RequestBody SabreDTO sabreDTO) {
+        SabreDTO sabreSalvo = sabreService.salvar(sabreDTO);
+
+        if (sabreSalvo != null) {
+            return ResponseEntity.ok(sabreSalvo);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SabreDTO> atualizar(@PathVariable Long id, @RequestBody SabreDTO sabreDTO) {
+        SabreDTO sabreSalvo = sabreService.atualizar(id, sabreDTO);
+
+        if (sabreSalvo != null) {
+            return ResponseEntity.ok(sabreSalvo);
         } else {
             return ResponseEntity.notFound().build();
         }

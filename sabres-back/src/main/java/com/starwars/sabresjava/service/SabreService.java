@@ -5,6 +5,7 @@ import com.starwars.sabresjava.mapper.SabreMapper;
 import com.starwars.sabresjava.model.Sabre;
 import com.starwars.sabresjava.model.SabreDTO;
 import com.starwars.sabresjava.repository.SabreRepository;
+import com.starwars.sabresjava.util.DataUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,4 +40,19 @@ public class SabreService {
         return sabre != null ? sabreMapper.convertToDTO(sabre) : null;
     }
 
+    public SabreDTO atualizar(Long id, SabreDTO sabreDTO) {
+        Sabre sabre = sabreRepository.findById(id).orElse(null);
+
+        if(sabre != null){
+            sabre.setTipo(sabreDTO.getTipo());
+            sabre.setDataFabricacao(DataUtils.convertStringToLocalDate(sabreDTO.getDataFabricacao()));
+            sabre.setStatus(sabreDTO.getStatus());
+            sabre.setJedi(sabreDTO.getJedi());
+            sabreRepository.save(sabre);
+
+            return sabreMapper.convertToDTO(sabre);
+        }
+
+        return null;
+    }
 }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Sabre } from '../model/sabre';
 import { Observable } from 'rxjs';
 import { delay, first, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class SabresService {
     .pipe(
       first(),
       delay(1000),
-      tap(sabres => console.log(sabres))
+      tap(sabres => console.log(sabres)),
+      map(sabres => sabres.sort((a, b) => Number(a.id) - Number(b.id)))
     );
   }
 

@@ -55,4 +55,8 @@ public class SabreService {
 
         return null;
     }
+
+    public void deletar(Long id) {
+        sabreRepository.findById(id).ifPresent(sabre -> sabreRepository.deleteById(id));
+    }
 }

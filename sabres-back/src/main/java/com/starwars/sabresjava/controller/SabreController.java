@@ -61,4 +61,16 @@ public class SabreController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletar (@PathVariable Long id){
+
+        try{
+            sabreService.deletar(id);
+            return ResponseEntity.noContent().build();
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
 }

@@ -5,4 +5,5 @@
 
 .action-column{
     flex: 0 0 75px;
+    justify-content: center;
 }

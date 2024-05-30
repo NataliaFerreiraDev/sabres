@@ -32,10 +32,13 @@
 
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef class="action-column"> Editar </mat-header-cell>
-        <mat-cell *matCellDef="let sabres" class="action-column"> <button mat-icon-button color="primary"
-                aria-label="Editar o Sabre">
-                <mat-icon (click)="onEdit(sabres)">edit</mat-icon>
+        <mat-header-cell *matHeaderCellDef class="action-column"> Ações </mat-header-cell>
+        <mat-cell *matCellDef="let sabres" class="action-column">
+            <button mat-icon-button color="primary" aria-label="Editar o Sabre" matTooltip="Editar" (click)="onEdit(sabres)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" aria-label="Deletar o Sabre" matTooltip="Deletar" (click)="onDelete(sabres)">
+                <mat-icon>delete</mat-icon>
             </button>
         </mat-cell>
     </ng-container>

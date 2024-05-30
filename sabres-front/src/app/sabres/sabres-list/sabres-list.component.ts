@@ -12,6 +12,7 @@ export class SabresListComponent implements OnInit {
   @Input() sabres: Sabre[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() delete = new EventEmitter(false);
 
   readonly displayedColumns = ['id', 'tipo', 'dataFabricacao', 'status', 'jedi', 'actions'];
 
@@ -26,6 +27,10 @@ export class SabresListComponent implements OnInit {
 
   onEdit(sabres: Sabre){
     this.edit.emit(sabres);
+  }
+
+  onDelete(sabres: Sabre){
+    this.delete.emit(sabres);
   }
 
 }

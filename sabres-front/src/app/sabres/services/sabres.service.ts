@@ -18,7 +18,7 @@ export class SabresService {
     return this.httpClient.get<Sabre[]>(this.API)
     .pipe(
       first(),
-      delay(1000),
+      delay(500),
       tap(sabres => console.log(sabres)),
       map(sabres => sabres.sort((a, b) => Number(a.id) - Number(b.id)))
     );
@@ -41,6 +41,10 @@ export class SabresService {
 
   private update(record: Partial<Sabre>){
     return this.httpClient.put<Sabre>(`${this.API}/${record.id}`, record);
+  }
+
+  delete(id: string){
+    return this.httpClient.delete<Sabre>(`${this.API}/${id}`);
   }
 
 }

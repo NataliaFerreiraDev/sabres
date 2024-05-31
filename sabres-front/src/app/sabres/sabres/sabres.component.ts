@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-sabres',
@@ -48,28 +49,37 @@ export class SabresComponent implements OnInit {
     });
   }
 
-  onAdd(){
-    this.router.navigate(['novo'], {relativeTo: this.route});
+  onAdd() {
+    this.loadSabres();
+    this.router.navigate(['novo'], { relativeTo: this.route });
   }
 
-  onEdit(sabre: Sabre){
-    this.router.navigate(['editar', sabre.id], {relativeTo: this.route});
+  onEdit(sabre: Sabre) {
+    this.router.navigate(['editar', sabre.id], { relativeTo: this.route });
   }
 
   onDelete(sabre: Sabre) {
-    this.sabreService.delete(sabre.id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Sabre Deletado com Sucesso.', 'X', {
-          duration: 5000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top'
-        });
-      },
-      error => {
-        this.onError('Erro ao deletar o Sabre.');
-      }
-    );
-  }
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Deseja realmente deletar o Sabre?',
+    });
 
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.sabreService.delete(sabre.id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Sabre Deletado com Sucesso.', 'X', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
+          },
+          error => {
+            this.onError('Erro ao deletar o Sabre.');
+          }
+        );
+      }
+    });
+
+  }
 }

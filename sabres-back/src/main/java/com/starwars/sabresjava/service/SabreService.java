@@ -31,7 +31,7 @@ public class SabreService {
     }
 
     public List<SabreDTO> listarTodos(){
-        List<Sabre> sabreList = sabreRepository.findAll();
+        List<Sabre> sabreList = sabreRepository.findByDeletedFalse();
 
         return sabreList.stream()
                 .map(sabreMapper::convertToDTO)
@@ -39,13 +39,13 @@ public class SabreService {
     }
 
     public SabreDTO buscarPorId(Long id){
-        Sabre sabre = sabreRepository.findById(id).orElse(null);
+        Sabre sabre = sabreRepository.findByIdAndDeletedFalse(id).orElse(null);
 
         return sabre != null ? sabreMapper.convertToDTO(sabre) : null;
     }
 
     public SabreDTO atualizar(Long id, SabreDTO sabreDTO) {
-        Sabre sabre = sabreRepository.findById(id).orElse(null);
+        Sabre sabre = sabreRepository.findByIdAndDeletedFalse(id).orElse(null);
 
         if(sabre != null){
             sabre.setTipo(sabreDTO.getTipo());
@@ -61,6 +61,9 @@ public class SabreService {
     }
 
     public void deletar(Long id) {
-        sabreRepository.findById(id).ifPresent(sabre -> sabreRepository.deleteById(id));
+        sabreRepository.findById(id).ifPresent(sabre -> {
+            sabre.setDeleted(true);
+            sabreRepository.save(sabre);
+        });
     }
 }

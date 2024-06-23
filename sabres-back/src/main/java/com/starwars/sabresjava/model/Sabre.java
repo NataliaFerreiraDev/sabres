@@ -38,4 +38,6 @@ public class Sabre {
     @Column(length = 50)
     private String jedi;
 
+    private boolean deleted = false;
+
 }

@@ -2,11 +2,16 @@ package com.starwars.sabresjava.controller;
 
 import com.starwars.sabresjava.model.SabreDTO;
 import com.starwars.sabresjava.service.SabreService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api/sabres")
 public class SabreController {
@@ -29,7 +34,7 @@ public class SabreController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SabreDTO> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<SabreDTO> buscarPorId(@PathVariable @NotNull @Positive Long id) {
         SabreDTO sabreDTO = sabreService.buscarPorId(id);
 
         if (sabreDTO != null) {
@@ -40,7 +45,7 @@ public class SabreController {
     }
 
     @PostMapping
-    public ResponseEntity<SabreDTO> inserir(@RequestBody SabreDTO sabreDTO) {
+    public ResponseEntity<SabreDTO> inserir(@RequestBody @Valid SabreDTO sabreDTO) {
         SabreDTO sabreSalvo = sabreService.salvar(sabreDTO);
 
         if (sabreSalvo != null) {
@@ -51,7 +56,7 @@ public class SabreController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SabreDTO> atualizar(@PathVariable Long id, @RequestBody SabreDTO sabreDTO) {
+    public ResponseEntity<SabreDTO> atualizar(@PathVariable @Valid @Positive Long id, @RequestBody SabreDTO sabreDTO) {
         SabreDTO sabreSalvo = sabreService.atualizar(id, sabreDTO);
 
         if (sabreSalvo != null) {
@@ -62,7 +67,7 @@ public class SabreController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletar (@PathVariable Long id){
+    public ResponseEntity<Object> deletar (@PathVariable @NotNull @Positive Long id){
 
         try{
             sabreService.deletar(id);

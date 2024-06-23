@@ -2,6 +2,8 @@ package com.starwars.sabresjava.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +23,15 @@ public class Sabre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(length = 10, nullable = false)
     private String tipo;
 
     @Column(nullable = false)
     private LocalDate dataFabricacao;
 
+    @NotNull
+    @NotBlank
     @Column(length = 10, nullable = false)
     private String status;
 

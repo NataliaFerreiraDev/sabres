@@ -10,14 +10,14 @@
           <mat-option value="MANUAL">MANUAL</mat-option>
           <mat-option value="AUTOMATICO">AUTOMATICO</mat-option>
         </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <input matInput placeholder="Fabricação (dd-MM-yyyy)" formControlName="dataFabricacao">
+        <mat-error *ngIf="form.get('tipo')?.invalid">{{getErrorMessage("tipo")}}</mat-error>
       </mat-form-field>
       
       <mat-form-field appearance="outline"  class="full-width">
-        <input matInput placeholder="Nome do Jedi" formControlName="jedi">
+        <input matInput placeholder="Nome do Jedi" formControlName="jedi" #jedi>
+        <mat-hint align="end">{{jedi.value?.length || 0}}/50</mat-hint>
+        <mat-error *ngIf="form.get('jedi')?.invalid">{{getErrorMessage("jedi")}}</mat-error>
+        
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
@@ -26,6 +26,7 @@
           <mat-option value="DISPONIVEL">DISPONIVEL</mat-option>
           <mat-option value="UTILIZADO">UTILIZADO</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.get('status')?.invalid">{{getErrorMessage("status")}}</mat-error>
       </mat-form-field>
       
     </form>

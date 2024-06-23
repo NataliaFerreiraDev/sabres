@@ -12,7 +12,6 @@ public class SabreMapper {
         Sabre sabre = new Sabre();
         sabre.setId(sabre.getId());
         sabre.setTipo(sabreDTO.getTipo());
-        sabre.setDataFabricacao(DataUtils.convertStringToLocalDate(sabreDTO.getDataFabricacao()));
         sabre.setStatus(sabreDTO.getStatus());
         sabre.setJedi(sabreDTO.getJedi());
 

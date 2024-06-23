@@ -8,6 +8,7 @@ import com.starwars.sabresjava.repository.SabreRepository;
 import com.starwars.sabresjava.util.DataUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -22,7 +23,10 @@ public class SabreService {
     }
 
     public SabreDTO salvar(SabreDTO sabreDTO) {
-        Sabre sabre = sabreRepository.save(sabreMapper.convertToEntity(sabreDTO));
+
+        Sabre sabre = sabreMapper.convertToEntity(sabreDTO);
+        sabre.setDataFabricacao(LocalDate.now());
+        sabreRepository.save(sabre);
         return sabreMapper.convertToDTO(sabre);
     }
 

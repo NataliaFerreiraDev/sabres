@@ -5,7 +5,6 @@ import com.starwars.sabresjava.mapper.SabreMapper;
 import com.starwars.sabresjava.model.Sabre;
 import com.starwars.sabresjava.model.SabreDTO;
 import com.starwars.sabresjava.repository.SabreRepository;
-import com.starwars.sabresjava.util.DataUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,6 +25,7 @@ public class SabreService {
 
         Sabre sabre = sabreMapper.convertToEntity(sabreDTO);
         sabre.setDataFabricacao(LocalDate.now());
+        sabre.setDeleted(false);
         sabreRepository.save(sabre);
         return sabreMapper.convertToDTO(sabre);
     }
@@ -49,7 +49,6 @@ public class SabreService {
 
         if(sabre != null){
             sabre.setTipo(sabreDTO.getTipo());
-            sabre.setDataFabricacao(DataUtils.convertStringToLocalDate(sabreDTO.getDataFabricacao()));
             sabre.setStatus(sabreDTO.getStatus());
             sabre.setJedi(sabreDTO.getJedi());
             sabreRepository.save(sabre);

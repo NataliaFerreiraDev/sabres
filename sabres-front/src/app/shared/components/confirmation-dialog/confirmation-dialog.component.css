@@ -1,4 +1,8 @@
 
-.mat-dialog-actions{
+mat-dialog-actions{
+    justify-content: space-evenly;
+}
+
+.mat-mdc-dialog-actions {
     justify-content: center;
 }

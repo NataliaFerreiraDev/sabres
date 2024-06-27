@@ -1,8 +1,9 @@
 package com.starwars.sabresjava.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.starwars.sabresjava.enums.SabreStatus;
+import com.starwars.sabresjava.enums.SabreTipo;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,16 +25,17 @@ public class Sabre {
     private Long id;
 
     @NotNull
-    @Column(length = 10, nullable = false)
-    private String tipo;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private SabreTipo tipo;
 
     @Column(nullable = false)
     private LocalDate dataFabricacao;
 
     @NotNull
-    @NotBlank
-    @Column(length = 10, nullable = false)
-    private String status;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private SabreStatus status;
 
     @Column(length = 50)
     private String jedi;

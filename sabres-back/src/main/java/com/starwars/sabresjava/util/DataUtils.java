@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DataUtils {
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public static LocalDate convertStringToLocalDate(String dateString) {
         return LocalDate.parse(dateString, DATE_FORMATTER);
